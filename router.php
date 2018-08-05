@@ -6,8 +6,10 @@
  * Time: 13:14
  */
 
+use authenticator\Credential;
+
 require 'vendor/autoload.php';
-require 'Credential.php';
+require 'authenticator/Credential.php';
 
 $session = new SpotifyWebAPI\Session(
     getenv('SPOTIFY_ID'),

@@ -6,6 +6,8 @@
  * Time: 15:06
  */
 
+namespace authenticator;
+
 class Credential
 {
     private const FILE_NAME = 'credentials.json';
