@@ -1,0 +1,10 @@
+### https://raw.github.com/github/gitignore/cb0a95c36f7c1fcb3f2ed2f2bcd5f78403b3caa4/Composer.gitignore
+
+composer.phar
+/vendor/
+
+# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
+# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
+# composer.lock
+
+.idea/
