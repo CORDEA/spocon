@@ -9,17 +9,30 @@
 use authenticator\Credential;
 use SpotifyWebAPI\SpotifyWebAPIException;
 
-require 'authenticator/Authenticator.php';
 require 'vendor/autoload.php';
+require 'ControllerFactory.php';
+
+$opt = new GetOpt\GetOpt();
+$opt->addCommands([
+    GetOpt\Command::create('play', 'PlayController::call'),
+]);
+
+$opt->process();
+
+$command = $opt->getCommand();
+if (!$command) {
+    return;
+}
+
+list ($class, $method) = explode('::', $command->getHandler());
+print $class;
 
 $authenticator = new authenticator\Authenticator();
 $credential = Credential::restore();
-
-$api = new SpotifyWebAPI\SpotifyWebAPI();
-$api->setAccessToken($credential->getAccessToken());
+$controller = ControllerFactory::create($credential, $class);
 
 try {
-    $api->pause();
+    $controller->call();
 } catch (SpotifyWebAPIException $e) {
     $authenticator->refreshToken($credential);
 }
