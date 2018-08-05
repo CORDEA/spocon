@@ -29,9 +29,13 @@ class Authenticator
     public function requestAccessToken($code)
     {
         $this->session->requestAccessToken($code);
-        $accessToken = $this->session->getAccessToken();
-        $refreshToken = $this->session->getRefreshToken();
-        Credential::store($accessToken, $refreshToken);
+        $this->store();
+    }
+
+    public function refreshToken(Credential $credential)
+    {
+        $this->session->refreshAccessToken($credential->getAccessToken());
+        $this->store();
     }
 
     public function getAuthorizeUrl()
@@ -42,5 +46,12 @@ class Authenticator
             ],
         ];
         return $this->session->getAuthorizeUrl($options);
+    }
+
+    private function store()
+    {
+        $accessToken = $this->session->getAccessToken();
+        $refreshToken = $this->session->getRefreshToken();
+        Credential::store($accessToken, $refreshToken);
     }
 }
