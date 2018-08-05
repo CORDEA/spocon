@@ -7,6 +7,7 @@
  */
 
 require 'vendor/autoload.php';
+require 'Credential.php';
 
 $session = new SpotifyWebAPI\Session(
     getenv('SPOTIFY_ID'),
@@ -19,8 +20,7 @@ if (isset($_GET['code'])) {
     $accessToken = $session->getAccessToken();
     $refreshToken = $session->getRefreshToken();
 
-    $json = json_encode(array('access_token' => $accessToken, 'refresh_token' => $refreshToken));
-    file_put_contents('credentials.json', $json);
+    Credential::store($accessToken, $refreshToken);
 } else {
     $options = [
         'scope' => [
