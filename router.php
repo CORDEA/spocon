@@ -6,28 +6,13 @@
  * Time: 13:14
  */
 
-use authenticator\Credential;
-
 require 'vendor/autoload.php';
-require 'authenticator/Credential.php';
+require 'authenticator/Authenticator.php';
 
-$session = new SpotifyWebAPI\Session(
-    getenv('SPOTIFY_ID'),
-    getenv('SPOTIFY_SECRET'),
-    'http://localhost:8080/callback'
-);
+$authenticator = new authenticator\Authenticator();
 
 if (isset($_GET['code'])) {
-    $session->requestAccessToken($_GET['code']);
-    $accessToken = $session->getAccessToken();
-    $refreshToken = $session->getRefreshToken();
-
-    Credential::store($accessToken, $refreshToken);
+    $authenticator->requestAccessToken($_GET['code']);
 } else {
-    $options = [
-        'scope' => [
-            'user-modify-playback-state'
-        ],
-    ];
-    header('Location: ' . $session->getAuthorizeUrl($options));
+    header('Location: ' . $authenticator->getAuthorizeUrl());
 }
