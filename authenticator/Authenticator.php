@@ -34,7 +34,7 @@ class Authenticator
 
     public function refreshToken(Credential $credential)
     {
-        $this->session->refreshAccessToken($credential->getAccessToken());
+        $this->session->refreshAccessToken($credential->getRefreshToken());
         $this->store();
     }
 
