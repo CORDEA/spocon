@@ -7,7 +7,6 @@
  */
 
 require 'vendor/autoload.php';
-require 'IController.php';
 
 class PreviousController implements IController
 {

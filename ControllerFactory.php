@@ -13,6 +13,8 @@ require 'authenticator/Authenticator.php';
 require 'IController.php';
 require 'PlayController.php';
 require 'PauseController.php';
+require 'PreviousController.php';
+require 'NextController.php';
 
 class ControllerFactory
 {

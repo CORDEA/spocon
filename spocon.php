@@ -16,6 +16,8 @@ $opt = new GetOpt\GetOpt();
 $opt->addCommands([
     GetOpt\Command::create('play', 'PlayController::call'),
     GetOpt\Command::create('pause', 'PauseController::call'),
+    GetOpt\Command::create('previous', 'PreviousController::call'),
+    GetOpt\Command::create('next', 'NextController::call'),
 ]);
 
 $opt->process();
