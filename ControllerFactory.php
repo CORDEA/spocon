@@ -10,7 +10,9 @@ use authenticator\Credential;
 
 require 'vendor/autoload.php';
 require 'authenticator/Authenticator.php';
+require 'IController.php';
 require 'PlayController.php';
+require 'PauseController.php';
 
 class ControllerFactory
 {
@@ -19,9 +21,6 @@ class ControllerFactory
         $api = new SpotifyWebAPI\SpotifyWebAPI();
         $api->setAccessToken($credential->getAccessToken());
 
-        switch ($name) {
-            case 'PlayController':
-                return new PlayController($api);
-        }
+        return new $name($api);
     }
 }

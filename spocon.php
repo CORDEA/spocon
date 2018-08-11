@@ -15,6 +15,7 @@ require 'ControllerFactory.php';
 $opt = new GetOpt\GetOpt();
 $opt->addCommands([
     GetOpt\Command::create('play', 'PlayController::call'),
+    GetOpt\Command::create('pause', 'PauseController::call'),
 ]);
 
 $opt->process();
