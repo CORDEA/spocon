@@ -20,6 +20,6 @@ class PlayController implements IController
 
     public function call()
     {
-        $this->api->pause();
+        $this->api->play();
     }
 }
